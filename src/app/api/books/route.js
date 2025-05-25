@@ -51,3 +51,19 @@ export const POST = async (req) => {
     );
   }
 };
+
+export const GET = async () => {
+  try {
+    await connectToDB();
+    const books = await Book.find({}).sort({ createdAt: -1 });
+    return new Response(JSON.stringify(books), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    return new Response(
+      JSON.stringify({ success: false, error: "Failed to fetch books" }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+};
