@@ -9,11 +9,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar, // Import the useSidebar hook
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 
 export function NavMain({ items }) {
-  console.log("NavMain items:", items);
+  const { setOpenMobile } = useSidebar(); // Get the sidebar control functions
+
+  const handleLinkClick = () => {
+    // Close the sidebar on mobile when a link is clicked
+    setOpenMobile(false);
+  };
 
   return (
     <SidebarGroup>
@@ -25,7 +31,7 @@ export function NavMain({ items }) {
                 asChild
                 className="flex items-center justify-between"
               >
-                <Link href={item.url}>
+                <Link href={item.url} onClick={handleLinkClick}>
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
