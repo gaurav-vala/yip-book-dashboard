@@ -38,7 +38,7 @@ const data = {
   user: {
     name: "YIP Admin",
     email: "admin@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/favicon.svg",
   },
   navMain: [
     {

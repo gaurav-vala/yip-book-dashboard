@@ -16,7 +16,6 @@ export const DELETE = async (req, { params }) => {
 
     await connectToDB();
 
-    // Find the book first to get the image URL
     const book = await Book.findById(id);
     if (!book) {
       return Response.json(
@@ -25,7 +24,6 @@ export const DELETE = async (req, { params }) => {
       );
     }
 
-    // Extract public_id from Cloudinary URL to delete the image
     if (book.image) {
       try {
         const publicId = book.image.split("/").pop().split(".")[0];
@@ -36,7 +34,6 @@ export const DELETE = async (req, { params }) => {
       }
     }
 
-    // Delete the book from database
     await Book.findByIdAndDelete(id);
 
     return Response.json({

@@ -102,7 +102,7 @@ export default function AddBook() {
   return (
     <div className="max-w-7xl mx-auto w-full">
       <div>
-        <div className="space-y-1 pb-6">
+        {/* <div className="space-y-1 pb-6">
           <div className="flex items-center gap-2">
             <div className="p-2 bg-neutral-100 rounded-lg">
               <Book className="h-5 w-5" />
@@ -112,17 +112,17 @@ export default function AddBook() {
           <p className="text-slate-600">
             Fill in the details below to add a new book to your collection
           </p>
-        </div>
+        </div> */}
 
         <div className="space-y-6 relative">
-          {isLoading && (
+          {/* {isLoading && (
             <div className="absolute inset-0 bg-white/70 z-10 flex items-center justify-center rounded-lg">
               <div className="flex items-center gap-2 font-medium">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 Adding Book...
               </div>
             </div>
-          )}
+          )} */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Book Name */}
             <div className="space-y-2">
