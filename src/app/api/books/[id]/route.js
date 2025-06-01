@@ -10,6 +10,32 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// ✅ Add GET handler here
+export const GET = async (req, { params }) => {
+  try {
+    const { id } = params;
+
+    await connectToDB();
+
+    const book = await Book.findById(id);
+
+    if (!book) {
+      return Response.json(
+        { success: false, error: "Book not found" },
+        { status: 404 }
+      );
+    }
+
+    return Response.json({ success: true, book }, { status: 200 });
+  } catch (error) {
+    return Response.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+};
+
+// Existing DELETE handler remains unchanged
 export const DELETE = async (req, { params }) => {
   try {
     const { id } = params;
@@ -30,7 +56,6 @@ export const DELETE = async (req, { params }) => {
         await cloudinary.uploader.destroy(publicId);
       } catch (imageError) {
         console.warn("Failed to delete image from Cloudinary:", imageError);
-        // Continue with book deletion even if image deletion fails
       }
     }
 
